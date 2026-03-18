@@ -481,7 +481,7 @@ tailwind.config = {
         <h3 style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#C0C0C0;margin:0 0 4px;letter-spacing:-0.01em;">Get Your Free Quote</h3>
         <p style="font-size:13px;color:#5C5C5C;margin:0 0 24px;">We'll get back to you within 24 hours.</p>
         <form id="hero-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="YOUR_API_KEY_HERE">
+          <input type="hidden" name="access_key" value="{{WEB3FORMS_KEY}}">
           <input type="hidden" name="subject" value="New Quote Request — Veronis Mobile Detailing">
           <div style="margin-bottom:12px;">
             <label class="form-label" for="h-name">Your Name</label>
@@ -1085,7 +1085,7 @@ tailwind.config = {
       </div>
       <div class="faq-item">
         <button class="faq-btn" onclick="toggleFaq(this)">Do I need to provide water or electricity?<span class="faq-icon">+</span></button>
-        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">No — we are fully self-sufficient. We bring our own water supply, power source, and all professional equipment. All we need is access to your vehicle.</p></div>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">Yes — we do require access to a water spigot and a standard electrical outlet near where the vehicle is located. We bring all of our own professional equipment and supplies; we just need those two utilities available on-site.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-btn" onclick="toggleFaq(this)">What products do you use?<span class="faq-icon">+</span></button>
@@ -1108,7 +1108,7 @@ tailwind.config = {
     <div class="contact-grid" style="display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start;">
       <div class="fade-up">
         <form id="quote-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="YOUR_API_KEY_HERE">
+          <input type="hidden" name="access_key" value="{{WEB3FORMS_KEY}}">
           <input type="hidden" name="subject" value="New Quote Request — Veronis Mobile Detailing">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
             <div><label class="form-label" for="fname">First Name</label><input class="form-input" type="text" id="fname" name="first_name" placeholder="John" required></div>

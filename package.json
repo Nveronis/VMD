@@ -1,0 +1,8 @@
+{
+  "name": "veronis-mobile-detailing",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node inject-key.mjs"
+  }
+}
