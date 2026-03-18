@@ -1,5 +1,3 @@
 {
-  "buildCommand": "node inject-key.mjs",
-  "outputDirectory": "dist",
   "framework": null
 }
