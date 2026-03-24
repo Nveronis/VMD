@@ -10,7 +10,7 @@
 **Type:** Mobile car detailing service (we come to the customer)
 **Service area:** Worcester County, Massachusetts (towns include Worcester, Shrewsbury, Westborough, Grafton, Holden, Auburn, Millbury, Northborough, Boylston, and surrounding communities)
 **Phone:** 774-200-7226
-**Email:** nveronis35@gmail.com
+**Email:** veronismobiledetailing@gmail.com
 **Facebook:** https://www.facebook.com/profile.php?id=61557473774396
 **Owner:** Nicholas Veronis
 
@@ -511,7 +511,7 @@ Include LocalBusiness structured data:
   "@type": "AutoRepair",
   "name": "Veronis Mobile Detailing",
   "telephone": "774-200-7226",
-  "email": "nveronis35@gmail.com",
+  "email": "veronismobiledetailing@gmail.com",
   "url": "https://www.veronismobiledetailing.com",
   "areaServed": {
     "@type": "AdministrativeArea",
