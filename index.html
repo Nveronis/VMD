@@ -495,6 +495,10 @@ tailwind.config = {
             <label class="form-label" for="h-vehicle">Your Vehicle</label>
             <input class="form-input" type="text" id="h-vehicle" name="vehicle" placeholder="2021 Toyota Camry" required>
           </div>
+          <div style="margin-bottom:12px;">
+            <label class="form-label" for="h-city">Town / City</label>
+            <input class="form-input" type="text" id="h-city" name="city" placeholder="e.g. Worcester" required>
+          </div>
           <div style="margin-bottom:20px;">
             <label class="form-label" for="h-service">Service Interested In</label>
             <select class="form-input" id="h-service" name="service" required>
@@ -1110,15 +1114,13 @@ tailwind.config = {
         <form id="quote-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="2b451d54-6f64-407d-8236-4c5a3a83f3cb">
           <input type="hidden" name="subject" value="New Quote Request — Veronis Mobile Detailing">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-            <div><label class="form-label" for="fname">First Name</label><input class="form-input" type="text" id="fname" name="first_name" placeholder="John" required></div>
-            <div><label class="form-label" for="lname">Last Name</label><input class="form-input" type="text" id="lname" name="last_name" placeholder="Smith" required></div>
-          </div>
+          <div style="margin-bottom:16px;"><label class="form-label" for="fname">Your Name</label><input class="form-input" type="text" id="fname" name="name" placeholder="John Smith" required></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
             <div><label class="form-label" for="phone">Phone</label><input class="form-input" type="tel" id="phone" name="phone" placeholder="(774) 000-0000" required></div>
             <div><label class="form-label" for="email">Email <span style="font-weight:400;color:#5C5C5C;text-transform:none;letter-spacing:0;">(Optional)</span></label><input class="form-input" type="email" id="email" name="email" placeholder="john@email.com"></div>
           </div>
           <div style="margin-bottom:16px;"><label class="form-label" for="vehicle">Vehicle Make & Model</label><input class="form-input" type="text" id="vehicle" name="vehicle" placeholder="e.g. Toyota Camry" required></div>
+          <div style="margin-bottom:16px;"><label class="form-label" for="city">Town / City</label><input class="form-input" type="text" id="city" name="city" placeholder="e.g. Worcester" required></div>
           <div style="margin-bottom:16px;">
             <label class="form-label" for="service">Service Interested In</label>
             <select class="form-input" id="service" name="service" required>
