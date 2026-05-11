@@ -1,0 +1,747 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Veronis Mobile Detailing</title>
+<meta name="description" content="Learn about Veronis Mobile Detailing — Worcester County's premium mobile detailing service run personally by Nicholas Veronis.">
+<link rel="icon" type="image/jpeg" href="brand_assets/VMDlogo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        surface: '#0A0A0A',
+        charcoal: '#111111',
+        graphite: '#1A1A1A',
+        silver: '#C0C0C0',
+        steel: '#8C8C8C',
+        gunmetal: '#5C5C5C',
+        dborder: '#2A2A2A',
+        teal: { DEFAULT: '#4A8B9E', light: '#6BB3C9', dark: '#2E6B7E' }
+      },
+      fontFamily: {
+        display: ['Montserrat', 'Arial', 'sans-serif'],
+        body: ['Inter', 'Helvetica', 'Arial', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; border-radius: 0 !important; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { background:transparent; color: #8C8C8C; font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  .grain::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1;
+  }
+
+  .text-chrome {
+    background: linear-gradient(180deg, #C0C0C0 0%, #4A8B9E 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  #nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 16px 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  #nav.scrolled {
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-color: #2A2A2A;
+  }
+  .nav-link {
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #8C8C8C; text-decoration: none;
+    transition: color 0.2s ease; padding: 4px 0; position: relative;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: #4A8B9E;
+    transform: scaleX(0); transition: transform 0.2s ease; transform-origin: left;
+  }
+  .nav-link:hover { color: #C0C0C0; }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link.active { color: #C0C0C0; }
+  .nav-link.active::after { transform: scaleX(1); }
+
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #4A8B9E 0%, #2E6B7E 100%);
+    color: #fff; padding: 14px 32px;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #6BB3C9 0%, #4A8B9E 100%);
+    transform: translateY(-2px); box-shadow: 0 8px 32px rgba(74,139,158,0.35);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  @keyframes btn-shimmer {
+    0% { transform: translateX(-200%); }
+    60%, 100% { transform: translateX(350%); }
+  }
+  .btn-quote {
+    display: inline-flex; align-items: center;
+    background: linear-gradient(135deg, #4A8B9E 0%, #2E6B7E 100%);
+    color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    position: relative; overflow: hidden; flex-shrink: 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 16px rgba(74,139,158,0.3);
+  }
+  .btn-quote::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 45%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-200%);
+    animation: btn-shimmer 2.5s ease-in-out infinite;
+  }
+  .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,139,158,0.55); }
+  .btn-quote:active { transform: translateY(0); }
+  @media (max-width: 768px) { .btn-quote-wrap { display: none !important; } }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #4A8B9E;
+    margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif; font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700; color: #C0C0C0; letter-spacing: -0.01em;
+    line-height: 1.2; margin: 0 0 16px 0;
+  }
+  .section-sub { font-size: 17px; color: #8C8C8C; line-height: 1.7; max-width: 560px; }
+
+  .divider-teal {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #4A8B9E 50%, transparent 100%);
+  }
+
+  .fade-up {
+    opacity: 1; transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } }
+
+  #mobile-menu {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; background:#000;
+    z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 32px; transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #mobile-menu.open { transform: translateX(0); }
+  .mobile-nav-link {
+    font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #C0C0C0; text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .mobile-nav-link:hover { color: #4A8B9E; }
+  .mobile-nav-link.active { color: #4A8B9E; }
+
+  .gallery-item { position: relative; overflow: hidden; cursor: pointer; display: block; }
+  .gallery-item img, .gallery-item video { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.05); }
+  .gallery-item-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s ease; z-index: 1;
+  }
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+  #lightbox {
+    position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.95);
+    display: none; align-items: center; justify-content: center; padding: 32px;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+  #lightbox-close {
+    position: absolute; top: 24px; right: 24px; color: #8C8C8C; font-size: 32px;
+    cursor: pointer; transition: color 0.2s; line-height: 1; background: none; border: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  #lightbox-close:hover { color: #fff; }
+
+  .stars { color: #4A8B9E; font-size: 18px; letter-spacing: 2px; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 8px)); }
+  }
+  .marquee-track {
+    display: flex; gap: 16px; width: max-content;
+    animation: marquee 45s linear infinite;
+  }
+  .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+  .marquee-wrap {
+    overflow: hidden; position: relative; width: 100%;
+    contain: layout;
+  }
+  .marquee-wrap::before, .marquee-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 200px; z-index: 2; pointer-events: none;
+  }
+  .marquee-wrap::before { left: 0; background: linear-gradient(to right, #000 0%, transparent 100%); }
+  .marquee-wrap::after { right: 0; background: linear-gradient(to left, #000 0%, transparent 100%); }
+
+  .review-card {
+    flex-shrink: 0; width: 320px;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.8), rgba(17,17,17,0.4));
+    border: 1px solid #2A2A2A; padding: 24px;
+    transition: border-color 0.3s ease;
+  }
+  .review-card:hover { border-color: #4A8B9E; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background:#000; }
+  ::-webkit-scrollbar-thumb { background: #2A2A2A; }
+  ::-webkit-scrollbar-thumb:hover { background: #4A8B9E; }
+
+  @media (max-width: 768px) {
+    .desktop-nav { display: none !important; }
+    .about-grid { grid-template-columns: 1fr !important; }
+    .gallery-grid { grid-template-columns: 1fr 1fr !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    .process-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (min-width: 769px) {
+    #hamburger { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BEAMS BACKGROUND CANVAS -->
+<div style="position:fixed;inset:0;z-index:-2;background:#000;"></div>
+<canvas id="beams-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(15px);"></canvas>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="Gallery image">
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" aria-hidden="true">
+  <button id="mobile-close" aria-label="Close menu" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#8C8C8C;font-size:28px;cursor:pointer;">&times;</button>
+  <a href="index.html" class="mobile-nav-link" onclick="closeMobile()">Home</a>
+  <a href="about.html" class="mobile-nav-link active" onclick="closeMobile()">About</a>
+  <a href="services.html" class="mobile-nav-link" onclick="closeMobile()">Services</a>
+  <a href="contact.html" class="mobile-nav-link" onclick="closeMobile()">Contact</a>
+  <a href="contact.html" class="mobile-nav-link" style="color:#4A8B9E;border:1px solid #4A8B9E;padding:12px 40px;margin-top:8px;" onclick="closeMobile()">Get a Quote</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+      <img src="brand_assets/VMDlogo.jpg" alt="Veronis Mobile Detailing" style="height:72px;width:auto;">
+    </a>
+    <div class="desktop-nav" style="display:flex;align-items:center;gap:32px;">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="contact.html" class="btn-quote btn-quote-wrap">Get a Quote</a>
+      <button id="hamburger" aria-label="Open menu" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;flex-direction:column;gap:5px;" onclick="openMobile()">
+        <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
+        <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
+        <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MEET NICK -->
+<section style="background:rgba(10,10,10,0.82);padding:140px 0 96px;position:relative;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+
+      <!-- NICK PORTRAIT -->
+      <div class="fade-up" style="position:relative;">
+        <img src="brand_assets/IMG_8486.jpeg" alt="Nicholas Veronis" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block;">
+      </div>
+
+      <!-- TEXT -->
+      <div class="fade-up">
+        <span class="section-label">The Man Behind The Detail</span>
+        <h2 class="section-title">Meet Nicholas<br>Veronis</h2>
+        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;">
+          Nick is the founder of Veronis Mobile Detailing, who turned a passion for clean cars into a full-time craft. What started as detailing vehicles for friends has grown over the last four years into Veronis Mobile Detailing, built on reputation, word of mouth, and results that speak for themselves.
+        </p>
+        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 32px;">
+          Every vehicle that comes through is treated with the same attention to detail that built this business from the ground up. Nick and his team take as much pride in your car as you do, and that standard has never changed since day one.
+        </p>
+        <div style="padding:24px;background:rgba(17,17,17,0.82);border:1px solid #2A2A2A;border-left:3px solid #4A8B9E;">
+          <p style="font-family:'Montserrat',sans-serif;font-size:15px;font-style:italic;color:#C0C0C0;margin:0 0 12px;line-height:1.6;">"I treat every car like it's going to a show. If I wouldn't be proud to park it next to mine, I'm not done yet."</p>
+          <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#4A8B9E;margin:0;">— Nicholas Veronis, Owner & Lead Detailer</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DECORATIVE VIDEO STRIP -->
+<div style="position:relative;height:280px;overflow:hidden;">
+  <video src="brand_assets/videoblocks-auto-cleaning-service-man-cleaning-the-car-disk-using-a-brush-and-cleaning-solution_r0wqbc7cad__9e4057ac0b399c7e85001c916f877c94__P360.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.7) 100%);"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+    <p style="font-family:'Montserrat',sans-serif;font-size:clamp(18px,3vw,28px);font-weight:700;color:#C0C0C0;letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin:0;padding:0 32px;">
+      Your Car. Our <span style="color:#4A8B9E;">Craft.</span>
+    </p>
+  </div>
+</div>
+<div class="divider-teal"></div>
+
+<!-- PROCESS TIMELINE -->
+<section style="background:rgba(17,17,17,0.82);padding:96px 0;position:relative;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div style="text-align:center;margin-bottom:64px;" class="fade-up">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title" style="margin:0 auto 16px;text-align:center;">The Detail Process</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">From booking to handing back the keys — here's exactly what to expect.</p>
+    </div>
+    <div class="fade-up process-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+
+      <div style="padding:40px 28px;background:rgba(10,10,10,0.82);border-top:3px solid #4A8B9E;position:relative;">
+        <p style="font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;color:#1A1A1A;margin:0 0 20px;line-height:1;">01</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C0C0C0;margin:0 0 12px;">Book Your Spot</p>
+        <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">Getting started is simple. Fill out the form on our site, let us know what your vehicle needs, and Nick will give you a call to get everything squared away and lock in a time that works for your schedule.</p>
+      </div>
+
+      <div style="padding:40px 28px;background:rgba(10,10,10,0.82);border-top:3px solid #2E6B7E;position:relative;">
+        <p style="font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;color:#1A1A1A;margin:0 0 20px;line-height:1;">02</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C0C0C0;margin:0 0 12px;">We Come To You</p>
+        <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">On the day of your appointment we pull up directly to your home, office, or wherever works best for you. We bring everything needed to get the job done.</p>
+      </div>
+
+      <div style="padding:40px 28px;background:rgba(10,10,10,0.82);border-top:3px solid #2E6B7E;position:relative;">
+        <p style="font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;color:#1A1A1A;margin:0 0 20px;line-height:1;">03</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C0C0C0;margin:0 0 12px;">We Get To Work</p>
+        <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">This is where the transformation happens. Our team works through every inch of your vehicle with professional grade equipment and products, treating your car with the same care we would want for our own.</p>
+      </div>
+
+      <div style="padding:40px 28px;background:rgba(10,10,10,0.82);border-top:3px solid #4A8B9E;position:relative;">
+        <p style="font-family:'Montserrat',sans-serif;font-size:52px;font-weight:800;color:#1A1A1A;margin:0 0 20px;line-height:1;">04</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#C0C0C0;margin:0 0 12px;">Enjoy The Results</p>
+        <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">Once we are finished you will see exactly why our customers keep coming back. A cleaner, fresher vehicle waiting right outside your door. No dropoff, no pickup, no wasted time.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DECORATIVE VIDEO STRIP -->
+<div style="position:relative;height:280px;overflow:hidden;">
+  <video src="brand_assets/hand-of-african-american-businessman-washing-yellow-sports-car-with-high-pressure-w-SBV-348480019-4K.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center 60%;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.7) 100%);"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+    <p style="font-family:'Montserrat',sans-serif;font-size:clamp(18px,3vw,28px);font-weight:700;color:#C0C0C0;letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin:0;padding:0 32px;">
+      Every Step Matters. <span style="color:#4A8B9E;">We Make Sure Of It.</span>
+    </p>
+  </div>
+</div>
+<div class="divider-teal"></div>
+
+<!-- ABOUT / BIO -->
+<section style="background:rgba(17,17,17,0.82);padding:96px 0;position:relative;overflow:hidden;" class="grain">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:2;">
+    <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+      <div class="fade-up">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">Built On Passion.<br>Driven By Results.</h2>
+        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;">
+          Veronis Mobile Detailing was founded on a simple belief: your vehicle deserves showroom-level care, delivered with the convenience you need. Based in Worcester County, we bring professional-grade equipment and premium products directly to your driveway, office, or anywhere your car lives.
+        </p>
+        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;">
+          Every detail is handled personally by Nicholas Veronis — no shortcuts, no subcontractors. From a thorough interior refresh to a full multi-stage paint correction, every job receives the same meticulous attention and care.
+        </p>
+        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 40px;">
+          We use only top-tier professional products and equipment — because your paint deserves better than a generic car wash. The result is a vehicle that looks, smells, and feels like new every time.
+        </p>
+        <div style="display:flex;gap:40px;flex-wrap:wrap;margin-bottom:40px;padding:24px 0;border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A;">
+          <div>
+            <p style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:#fff;margin:0;line-height:1;" class="counter" data-target="500">0+</p>
+            <p style="font-size:12px;color:#5C5C5C;font-family:'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;margin:6px 0 0;">Vehicles Detailed</p>
+          </div>
+          <div>
+            <p style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:#fff;margin:0;line-height:1;">5.0</p>
+            <p style="font-size:12px;color:#5C5C5C;font-family:'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;margin:6px 0 0;">Star Rating</p>
+          </div>
+          <div>
+            <p style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:#fff;margin:0;line-height:1;">5+</p>
+            <p style="font-size:12px;color:#5C5C5C;font-family:'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;margin:6px 0 0;">Years Experience</p>
+          </div>
+        </div>
+        <a href="contact.html" class="btn-primary">Book Your Detail</a>
+      </div>
+      <div class="fade-up" style="position:relative;">
+        <video src="brand_assets/hands-of-man-in-black-protective-rubber-gloves-cleaning-interior-of-the-car-with-ho-SBV-348449932-4K.mp4" autoplay muted loop playsinline style="width:100%;display:block;object-fit:cover;max-height:620px;"></video>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);pointer-events:none;"></div>
+        <div style="background:rgba(26,26,26,0.88);border:1px solid #2A2A2A;border-top:none;padding:20px 24px;">
+          <p style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;margin:0 0 4px;">Nicholas Veronis</p>
+          <p style="font-size:13px;color:#4A8B9E;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;margin:0;">Owner & Lead Detailer · Worcester County, MA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECORATIVE VIDEO STRIP -->
+<div style="position:relative;height:280px;overflow:hidden;">
+  <video src="brand_assets/close-up-cropped-image-of-washing-car-interior-and-seat-by-a-soft-brush-with-foam-y-SBV-348448939-4K.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.7) 100%);"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+    <p style="font-family:'Montserrat',sans-serif;font-size:clamp(18px,3vw,28px);font-weight:700;color:#C0C0C0;letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin:0;padding:0 32px;">
+      Real Work. <span style="color:#4A8B9E;">Real Results.</span>
+    </p>
+  </div>
+</div>
+<div class="divider-teal"></div>
+
+<!-- GALLERY -->
+<section style="background:rgba(10,10,10,0.82);padding:96px 0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div style="text-align:center;margin-bottom:64px;" class="fade-up">
+      <span class="section-label">Our Work</span>
+      <h2 class="section-title" style="margin:0 auto 16px;text-align:center;">Gallery</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">Real work. Real results. Every vehicle treated like our own.</p>
+    </div>
+    <div class="gallery-grid fade-up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="brand_assets/IMG_0591.jpeg" alt="White Porsche detail" loading="eager">
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="brand_assets/IMG_6444.jpeg" alt="Red Audi exterior detail" loading="eager">
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <video src="brand_assets/hand-of-african-american-businessman-washing-yellow-sports-car-with-high-pressure-w-SBV-348480019-4K.mp4" autoplay muted loop playsinline></video>
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="brand_assets/IMG_6578.jpeg" alt="BMW interior detail" loading="eager">
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <video src="brand_assets/close-up-cropped-image-of-washing-car-interior-and-seat-by-a-soft-brush-with-foam-y-SBV-348448939-4K.mp4" autoplay muted loop playsinline></video>
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item">
+        <video src="brand_assets/videoblocks-auto-cleaning-service-man-cleaning-the-car-disk-using-a-brush-and-cleaning-solution_r0wqbc7cad__9e4057ac0b399c7e85001c916f877c94__P360.mp4" autoplay muted loop playsinline></video>
+        <div class="gallery-item-overlay"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DECORATIVE VIDEO STRIP -->
+<div style="position:relative;height:280px;overflow:hidden;">
+  <video src="brand_assets/hands-of-man-in-black-protective-rubber-gloves-cleaning-interior-of-the-car-with-ho-SBV-348449932-4K.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.7) 100%);"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+    <p style="font-family:'Montserrat',sans-serif;font-size:clamp(18px,3vw,28px);font-weight:700;color:#C0C0C0;letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin:0;padding:0 32px;">
+      Don't Take Our <span style="color:#4A8B9E;">Word For It.</span>
+    </p>
+  </div>
+</div>
+<div class="divider-teal"></div>
+
+<!-- TESTIMONIALS -->
+<section style="background:rgba(0,0,0,0.82);padding:96px 0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div style="text-align:center;margin-bottom:64px;" class="fade-up">
+      <span class="section-label">Social Proof</span>
+      <h2 class="section-title" style="margin:0 auto 16px;text-align:center;">Don't Take Our Word For It</h2>
+    </div>
+  </div>
+  <div class="marquee-wrap fade-up">
+    <div class="marquee-track">
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Just had my car detailed by Veronis Mobile Detailing, and I couldn't be happier. It looks better than the day I bought it! Nick showed up right on time, walked me through what he was going to do, and absolutely exceeded my expectations. I'll be recommending him to everyone I know."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Matt Malloy</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Apr 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"6 Stars if FB would let me. Nick and his employee showed up on time, provided a great service on my wife's vehicle. Last minute I asked him to detail my truck as well — nothing but a smile and another great job. Can't wait to use them again."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Ricky Saunders</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Jul 2024</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Can't recommend Veronis Mobile Detailing enough. Nick detailed two of my cars, and trust me when I say they were not easy days. He was very professional and polite. Definitely going to use him again in the future."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Liam Trundy</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Apr 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"I am a returning customer and am 100% happy with the work they did! I will probably have them detail my truck a few more times this summer. Highly recommend."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Rob Nicholson</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · May 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Nick did a wonderful job detailing my car. It looks brand new and well worth the price! He was a professional and passionate young man, I will be going back next time I need it."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Nadia Vivero</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · May 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Veronis Mobile Detailing is my new car detailer and I will definitely be using his services again. He did a fantastic job on my car and already booked another appointment for my other car."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Tori Coffey</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Apr 2025</p>
+      </div>
+      <!-- SET 2 duplicate for seamless loop -->
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Just had my car detailed by Veronis Mobile Detailing, and I couldn't be happier. It looks better than the day I bought it! Nick showed up right on time, walked me through what he was going to do, and absolutely exceeded my expectations. I'll be recommending him to everyone I know."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Matt Malloy</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Apr 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"6 Stars if FB would let me. Nick and his employee showed up on time, provided a great service on my wife's vehicle. Last minute I asked him to detail my truck as well — nothing but a smile and another great job. Can't wait to use them again."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Ricky Saunders</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Jul 2024</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Can't recommend Veronis Mobile Detailing enough. Nick detailed two of my cars, and trust me when I say they were not easy days. He was very professional and polite. Definitely going to use him again in the future."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Liam Trundy</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Apr 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"I am a returning customer and am 100% happy with the work they did! I will probably have them detail my truck a few more times this summer. Highly recommend."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Rob Nicholson</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · May 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Nick did a wonderful job detailing my car. It looks brand new and well worth the price! He was a professional and passionate young man, I will be going back next time I need it."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Nadia Vivero</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · May 2025</p>
+      </div>
+      <div class="review-card">
+        <div class="stars" style="margin-bottom:14px;">★★★★★</div>
+        <p style="font-size:14px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;font-style:italic;">"Veronis Mobile Detailing is my new car detailer and I will definitely be using his services again. He did a fantastic job on my car and already booked another appointment for my other car."</p>
+        <p style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;color:#C0C0C0;margin:0 0 2px;">Tori Coffey</p>
+        <p style="font-size:11px;color:#5C5C5C;margin:0;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;">Facebook · Apr 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#000;border-top:1px solid #1A1A1A;padding:64px 0 32px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+      <div>
+        <img src="brand_assets/VMDlogo.jpg" alt="Veronis Mobile Detailing" style="height:44px;width:auto;margin-bottom:20px;display:block;">
+        <p style="font-size:14px;color:#5C5C5C;line-height:1.6;margin:0 0 24px;max-width:260px;">Premium mobile car detailing brought to your door. Serving Worcester County, MA.</p>
+        <a href="https://www.facebook.com/profile.php?id=61557473774396" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(17,17,17,0.82);border:1px solid #2A2A2A;display:inline-flex;align-items:center;justify-content:center;color:#8C8C8C;text-decoration:none;font-size:14px;font-weight:700;transition:border-color 0.25s,color 0.25s;" onmouseover="this.style.borderColor='#4A8B9E';this.style.color='#4A8B9E'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#8C8C8C'">f</a>
+      </div>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Services</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Complete Details</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Interior Only</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Exterior Only</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Paint Correction</a>
+          <a href="contact.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Ceramic Coating</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Company</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="about.html" style="font-size:14px;color:#4A8B9E;text-decoration:none;">About</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Gallery</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Reviews</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">FAQ</a>
+          <a href="contact.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Contact</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Contact</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="tel:7742007226" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">774-200-7226</a>
+          <a href="mailto:veronismobiledetailing@gmail.com" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">veronismobiledetailing@gmail.com</a>
+          <span style="font-size:14px;color:#5C5C5C;">Worcester County, MA</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #111111;padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <p style="font-size:13px;color:#5C5C5C;margin:0;">© 2026 Veronis Mobile Detailing. All rights reserved.</p>
+      <p style="font-size:13px;color:#5C5C5C;margin:0;">Serving Worcester County, MA</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// MOBILE MENU
+function openMobile() {
+  document.getElementById('mobile-menu').classList.add('open');
+  document.getElementById('mobile-menu').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobile() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('mobile-menu').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.getElementById('mobile-close').addEventListener('click', closeMobile);
+
+// FADE UP
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 40);
+    });
+  }, 200);
+});
+
+// COUNTER
+const coObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    const step = target / (1800 / 16);
+    let cur = 0;
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = Math.floor(cur) + '+';
+      if (cur >= target) clearInterval(t);
+    }, 16);
+    coObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => coObserver.observe(el));
+
+// LIGHTBOX
+function openLightbox(el) {
+  document.getElementById('lightbox-img').src = el.querySelector('img').src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+document.getElementById('lightbox-close').addEventListener('click', () => {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+});
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) { this.classList.remove('open'); document.body.style.overflow = ''; }
+});
+</script>
+
+<script>
+(function(){
+  var c = document.getElementById('beams-bg');
+  var ctx = c.getContext('2d');
+  var beams = [], N = 30;
+
+  function mkBeam(W, H) {
+    return {
+      x: Math.random()*W*1.5 - W*0.25,
+      y: Math.random()*H*1.5 - H*0.25,
+      w: 30 + Math.random()*60,
+      len: H*2.5,
+      angle: -35 + Math.random()*10,
+      speed: 0.6 + Math.random()*1.2,
+      op: 0.12 + Math.random()*0.16,
+      hue: 190 + Math.random()*70,
+      pulse: Math.random()*Math.PI*2,
+      ps: 0.02 + Math.random()*0.03
+    };
+  }
+
+  function reset(b, i) {
+    var sp = c.width/3;
+    b.y = c.height + 100;
+    b.x = (i%3)*sp + sp/2 + (Math.random()-.5)*sp*.5;
+    b.w = 100 + Math.random()*100;
+    b.speed = 0.5 + Math.random()*.4;
+    b.hue = 190 + i*70/N;
+    b.op = 0.2 + Math.random()*.1;
+  }
+
+  function resize() {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    beams = Array.from({length:N}, function(){ return mkBeam(c.width, c.height); });
+  }
+
+  function frame() {
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.filter = 'blur(35px)';
+    beams.forEach(function(b,i){
+      b.y -= b.speed;
+      b.pulse += b.ps;
+      if(b.y + b.len < -100) reset(b,i);
+      var op = b.op*(0.8+Math.sin(b.pulse)*0.2)*0.85;
+      var g = ctx.createLinearGradient(0,0,0,b.len);
+      g.addColorStop(0,   'hsla('+b.hue+',85%,65%,0)');
+      g.addColorStop(0.1, 'hsla('+b.hue+',85%,65%,'+(op*.5)+')');
+      g.addColorStop(0.4, 'hsla('+b.hue+',85%,65%,'+op+')');
+      g.addColorStop(0.6, 'hsla('+b.hue+',85%,65%,'+op+')');
+      g.addColorStop(0.9, 'hsla('+b.hue+',85%,65%,'+(op*.5)+')');
+      g.addColorStop(1,   'hsla('+b.hue+',85%,65%,0)');
+      ctx.save();
+      ctx.translate(b.x,b.y);
+      ctx.rotate(b.angle*Math.PI/180);
+      ctx.fillStyle = g;
+      ctx.fillRect(-b.w/2,0,b.w,b.len);
+      ctx.restore();
+    });
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  frame();
+})();
+</script>
+</body>
+</html>
+
+
+
+
+

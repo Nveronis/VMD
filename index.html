@@ -38,7 +38,7 @@ tailwind.config = {
 <style>
   *, *::before, *::after { box-sizing: border-box; border-radius: 0 !important; }
   html { scroll-behavior: smooth; }
-  body { background: #000; color: #8C8C8C; font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
+  body { background: transparent; color: #8C8C8C; font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
 
   .grain::before {
     content: '';
@@ -76,6 +76,8 @@ tailwind.config = {
   }
   .nav-link:hover { color: #C0C0C0; }
   .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link.active { color: #C0C0C0; }
+  .nav-link.active::after { transform: scaleX(1); }
 
   .btn-primary {
     display: inline-block;
@@ -91,6 +93,31 @@ tailwind.config = {
     transform: translateY(-2px); box-shadow: 0 8px 32px rgba(74,139,158,0.35);
   }
   .btn-primary:active { transform: translateY(0); }
+
+  @keyframes btn-shimmer {
+    0% { transform: translateX(-200%); }
+    60%, 100% { transform: translateX(350%); }
+  }
+  .btn-quote {
+    display: inline-flex; align-items: center;
+    background: linear-gradient(135deg, #4A8B9E 0%, #2E6B7E 100%);
+    color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    position: relative; overflow: hidden; flex-shrink: 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 16px rgba(74,139,158,0.3);
+  }
+  .btn-quote::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 45%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-200%);
+    animation: btn-shimmer 2.5s ease-in-out infinite;
+  }
+  .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,139,158,0.55); }
+  .btn-quote:active { transform: translateY(0); }
+  @media (max-width: 768px) { .btn-quote-wrap { display: none !important; } }
 
   .btn-ghost {
     display: inline-block; background: transparent; color: #C0C0C0;
@@ -395,6 +422,10 @@ tailwind.config = {
 </head>
 <body>
 
+<!-- BEAMS BACKGROUND CANVAS -->
+<div style="position:fixed;inset:0;z-index:-2;background:#000;"></div>
+<canvas id="beams-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(15px);"></canvas>
+
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true">
   <button id="lightbox-close" aria-label="Close">&times;</button>
@@ -404,13 +435,11 @@ tailwind.config = {
 <!-- MOBILE MENU -->
 <div id="mobile-menu" aria-hidden="true">
   <button id="mobile-close" aria-label="Close menu" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#8C8C8C;font-size:28px;cursor:pointer;">&times;</button>
-  <a href="#pricing" class="mobile-nav-link" onclick="closeMobile()">Services</a>
-  <a href="#pricing" class="mobile-nav-link" onclick="closeMobile()">Pricing</a>
-  <a href="#plans" class="mobile-nav-link" onclick="closeMobile()">Plans</a>
-  <a href="#gallery" class="mobile-nav-link" onclick="closeMobile()">Gallery</a>
-  <a href="#about" class="mobile-nav-link" onclick="closeMobile()">About</a>
-  <a href="#contact" class="mobile-nav-link" onclick="closeMobile()">Contact</a>
-  <a href="#contact" class="btn-primary" onclick="closeMobile()" style="margin-top:16px;">Get A Quote</a>
+  <a href="index.html" class="mobile-nav-link" onclick="closeMobile()">Home</a>
+  <a href="about.html" class="mobile-nav-link" onclick="closeMobile()">About</a>
+  <a href="services.html" class="mobile-nav-link" onclick="closeMobile()">Services</a>
+  <a href="contact.html" class="mobile-nav-link" onclick="closeMobile()">Contact</a>
+  <a href="contact.html" class="mobile-nav-link" style="color:#4A8B9E;border:1px solid #4A8B9E;padding:12px 40px;margin-top:8px;" onclick="closeMobile()">Get a Quote</a>
 </div>
 
 <!-- NAV -->
@@ -420,15 +449,13 @@ tailwind.config = {
       <img src="brand_assets/VMDlogo.jpg" alt="Veronis Mobile Detailing" style="height:72px;width:auto;">
     </a>
     <div class="desktop-nav" style="display:flex;align-items:center;gap:32px;">
-      <a href="#pricing" class="nav-link">Services</a>
-      <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="#plans" class="nav-link">Plans</a>
-      <a href="#gallery" class="nav-link">Gallery</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="contact.html" class="nav-link">Contact</a>
     </div>
     <div style="display:flex;align-items:center;gap:16px;">
-      <a href="#contact" class="btn-primary desktop-nav" style="padding:10px 24px;font-size:13px;">Get A Quote</a>
+      <a href="contact.html" class="btn-quote btn-quote-wrap">Get a Quote</a>
       <button id="hamburger" aria-label="Open menu" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;flex-direction:column;gap:5px;" onclick="openMobile()">
         <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
         <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
@@ -530,7 +557,7 @@ tailwind.config = {
 <div class="divider-teal"></div>
 
 <!-- INTERACTIVE PRICING -->
-<section id="pricing" style="background:#0A0A0A;padding:96px 0;">
+<section id="pricing" style="background:rgba(10,10,10,0.88);padding:96px 0;">
   <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div style="text-align:center;margin-bottom:56px;" class="fade-up">
       <span class="section-label">No Surprises</span>
@@ -756,13 +783,39 @@ tailwind.config = {
 
     </div>
     <p style="text-align:center;font-size:13px;color:#5C5C5C;font-style:italic;margin-top:32px;">* Prices are estimates. Final pricing varies based on vehicle condition. Contact us for an exact quote.</p>
+
+    <!-- ADD-ON SERVICES -->
+    <div style="margin-top:64px;border-top:1px solid #2A2A2A;padding-top:48px;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <span class="section-label">Enhance Your Service</span>
+        <h2 class="section-title" style="text-align:center;margin:0 auto 8px;">Add-On Services</h2>
+        <p style="font-size:15px;color:#5C5C5C;margin:0 auto;">Pair any of these with your detail for a complete transformation.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;">
+        <div style="background:rgba(26,26,26,0.88);border-top:3px solid #4A8B9E;padding:36px 32px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="color:#4A8B9E;font-size:20px;">✦</span>
+            <h3 style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#C0C0C0;margin:0;">Engine Bay Cleaning</h3>
+          </div>
+          <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">A thorough degreasing and detail of the engine bay — removing built-up grime, grease, and road residue for a clean, showroom-ready underhood appearance.</p>
+        </div>
+        <div style="background:rgba(26,26,26,0.88);border-top:3px solid #4A8B9E;padding:36px 32px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="color:#4A8B9E;font-size:20px;">✦</span>
+            <h3 style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#C0C0C0;margin:0;">Headlight Restoration</h3>
+          </div>
+          <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">Polishing and restoring cloudy or yellowed headlights back to near-new clarity — improving both the look of your vehicle and your visibility on the road.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <div class="divider-teal"></div>
 
 <!-- SERVICE PLANS -->
-<section id="plans" style="background:#000;padding:96px 0;">
+<section id="plans" style="background:rgba(0,0,0,0.85);padding:96px 0;">
   <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
 
     <div style="text-align:center;margin-bottom:64px;" class="fade-up">
@@ -859,7 +912,7 @@ tailwind.config = {
 <div class="divider-teal"></div>
 
 <!-- GALLERY -->
-<section id="gallery" style="background:#0A0A0A;padding:96px 0;overflow:hidden;">
+<section id="gallery" style="background:rgba(10,10,10,0.88);padding:96px 0;overflow:hidden;">
   <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div style="text-align:center;margin-bottom:64px;" class="fade-up">
       <span class="section-label">Our Work</span>
@@ -881,52 +934,8 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" style="background:#111111;padding:96px 0;position:relative;overflow:hidden;" class="grain">
-  <div style="max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:2;">
-    <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-      <div class="fade-up">
-        <span class="section-label">The Story</span>
-        <h2 class="section-title">Built On Passion.<br>Driven By Results.</h2>
-        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;">
-          Veronis Mobile Detailing was founded on a simple belief: your vehicle deserves showroom-level care, delivered with the convenience you need. Based in Worcester County, we bring professional-grade equipment and premium products directly to your driveway, office, or anywhere your car lives.
-        </p>
-        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 20px;">
-          Every detail is handled personally by Nicholas Veronis — no shortcuts, no subcontractors. From a thorough interior refresh to a full multi-stage paint correction, every job receives the same meticulous attention and care.
-        </p>
-        <p style="font-size:16px;color:#8C8C8C;line-height:1.7;margin:0 0 40px;">
-          We use only top-tier professional products and equipment — because your paint deserves better than a generic car wash. The result is a vehicle that looks, smells, and feels like new every time.
-        </p>
-        <div style="display:flex;gap:40px;flex-wrap:wrap;margin-bottom:40px;padding:24px 0;border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A;">
-          <div>
-            <p style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:#fff;margin:0;line-height:1;" class="counter" data-target="500">0+</p>
-            <p style="font-size:12px;color:#5C5C5C;font-family:'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;margin:6px 0 0;">Vehicles Detailed</p>
-          </div>
-          <div>
-            <p style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:#fff;margin:0;line-height:1;">5.0</p>
-            <p style="font-size:12px;color:#5C5C5C;font-family:'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;margin:6px 0 0;">Star Rating</p>
-          </div>
-          <div>
-            <p style="font-family:'Montserrat',sans-serif;font-size:38px;font-weight:800;color:#fff;margin:0;line-height:1;">5+</p>
-            <p style="font-size:12px;color:#5C5C5C;font-family:'Montserrat',sans-serif;letter-spacing:0.08em;text-transform:uppercase;margin:6px 0 0;">Years Experience</p>
-          </div>
-        </div>
-        <a href="#contact" class="btn-primary">Book Your Detail</a>
-      </div>
-      <div class="fade-up" style="position:relative;">
-        <video src="brand_assets/IMG_8322.mp4" autoplay muted loop playsinline style="width:100%;display:block;object-fit:cover;max-height:620px;"></video>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);pointer-events:none;"></div>
-        <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-top:none;padding:20px 24px;">
-          <p style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;margin:0 0 4px;">Nicholas Veronis</p>
-          <p style="font-size:13px;color:#4A8B9E;font-family:'Montserrat',sans-serif;letter-spacing:0.05em;margin:0;">Owner & Lead Detailer · Worcester County, MA</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- TESTIMONIALS -->
-<section id="reviews" style="background:#000;padding:96px 0;">
+<section id="reviews" style="background:rgba(0,0,0,0.85);padding:96px 0;">
   <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
     <div style="text-align:center;margin-bottom:64px;" class="fade-up">
       <span class="section-label">Social Proof</span>
@@ -1029,7 +1038,7 @@ tailwind.config = {
 <div class="divider-teal"></div>
 
 <!-- SERVICE AREAS -->
-<section id="areas" style="background:#0A0A0A;padding:96px 0;position:relative;overflow:hidden;">
+<section id="areas" style="background:rgba(10,10,10,0.88);padding:96px 0;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(42,42,42,0.4) 39px,rgba(42,42,42,0.4) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(42,42,42,0.4) 39px,rgba(42,42,42,0.4) 40px);"></div>
   <div style="max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:2;">
     <div style="text-align:center;margin-bottom:56px;" class="fade-up">
@@ -1059,7 +1068,7 @@ tailwind.config = {
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="background:#000;padding:96px 0;">
+<section id="faq" style="background:rgba(0,0,0,0.85);padding:96px 0;">
   <div style="max-width:760px;margin:0 auto;padding:0 32px;">
     <div style="text-align:center;margin-bottom:64px;" class="fade-up">
       <span class="section-label">Got Questions</span>
@@ -1101,7 +1110,7 @@ tailwind.config = {
 <div class="divider-teal"></div>
 
 <!-- CONTACT -->
-<section id="contact" style="background:#0A0A0A;padding:96px 0;position:relative;overflow:hidden;" class="grain">
+<section id="contact" style="background:rgba(10,10,10,0.88);padding:96px 0;position:relative;overflow:hidden;" class="grain">
   <div style="max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:2;">
     <div style="text-align:center;margin-bottom:64px;" class="fade-up">
       <span class="section-label">Get In Touch</span>
@@ -1171,21 +1180,21 @@ tailwind.config = {
       <div>
         <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Services</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#pricing" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Complete Details</a>
-          <a href="#pricing" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Interior Only</a>
-          <a href="#pricing" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Exterior Only</a>
-          <a href="#pricing" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Paint Correction</a>
-          <a href="#contact" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Ceramic Coating</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Complete Details</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Interior Only</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Exterior Only</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Paint Correction</a>
+          <a href="contact.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Ceramic Coating</a>
         </div>
       </div>
       <div>
         <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Company</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#about" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">About</a>
-          <a href="#gallery" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Gallery</a>
-          <a href="#reviews" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Reviews</a>
-          <a href="#faq" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">FAQ</a>
-          <a href="#contact" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Contact</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">About</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Gallery</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Reviews</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">FAQ</a>
+          <a href="contact.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Contact</a>
         </div>
       </div>
       <div>
@@ -1198,7 +1207,7 @@ tailwind.config = {
       </div>
     </div>
     <div style="border-top:1px solid #111111;padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-      <p style="font-size:13px;color:#5C5C5C;margin:0;">© 2025 Veronis Mobile Detailing. All rights reserved.</p>
+      <p style="font-size:13px;color:#5C5C5C;margin:0;">© 2026 Veronis Mobile Detailing. All rights reserved.</p>
       <p style="font-size:13px;color:#5C5C5C;margin:0;">Serving Worcester County, MA</p>
     </div>
   </div>
@@ -1468,6 +1477,74 @@ document.getElementById('quote-form').addEventListener('submit', async function(
   } catch { document.getElementById('form-error').style.display = 'block'; }
   btn.textContent = 'Send My Quote Request'; btn.disabled = false;
 });
+</script>
+
+<script>
+(function(){
+  var c = document.getElementById('beams-bg');
+  var ctx = c.getContext('2d');
+  var beams = [], N = 30;
+
+  function mkBeam(W, H) {
+    return {
+      x: Math.random()*W*1.5 - W*0.25,
+      y: Math.random()*H*1.5 - H*0.25,
+      w: 30 + Math.random()*60,
+      len: H*2.5,
+      angle: -35 + Math.random()*10,
+      speed: 0.6 + Math.random()*1.2,
+      op: 0.12 + Math.random()*0.16,
+      hue: 190 + Math.random()*70,
+      pulse: Math.random()*Math.PI*2,
+      ps: 0.02 + Math.random()*0.03
+    };
+  }
+
+  function reset(b, i) {
+    var sp = c.width/3;
+    b.y = c.height + 100;
+    b.x = (i%3)*sp + sp/2 + (Math.random()-.5)*sp*.5;
+    b.w = 100 + Math.random()*100;
+    b.speed = 0.5 + Math.random()*.4;
+    b.hue = 190 + i*70/N;
+    b.op = 0.2 + Math.random()*.1;
+  }
+
+  function resize() {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    beams = Array.from({length:N}, function(){ return mkBeam(c.width, c.height); });
+  }
+
+  function frame() {
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.filter = 'blur(35px)';
+    beams.forEach(function(b,i){
+      b.y -= b.speed;
+      b.pulse += b.ps;
+      if(b.y + b.len < -100) reset(b,i);
+      var op = b.op*(0.8+Math.sin(b.pulse)*0.2)*0.85;
+      var g = ctx.createLinearGradient(0,0,0,b.len);
+      g.addColorStop(0,   'hsla('+b.hue+',85%,65%,0)');
+      g.addColorStop(0.1, 'hsla('+b.hue+',85%,65%,'+(op*.5)+')');
+      g.addColorStop(0.4, 'hsla('+b.hue+',85%,65%,'+op+')');
+      g.addColorStop(0.6, 'hsla('+b.hue+',85%,65%,'+op+')');
+      g.addColorStop(0.9, 'hsla('+b.hue+',85%,65%,'+(op*.5)+')');
+      g.addColorStop(1,   'hsla('+b.hue+',85%,65%,0)');
+      ctx.save();
+      ctx.translate(b.x,b.y);
+      ctx.rotate(b.angle*Math.PI/180);
+      ctx.fillStyle = g;
+      ctx.fillRect(-b.w/2,0,b.w,b.len);
+      ctx.restore();
+    });
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  frame();
+})();
 </script>
 </body>
 </html>

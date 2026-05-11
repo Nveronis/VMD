@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services & Pricing | Veronis Mobile Detailing</title>
+<meta name="description" content="Transparent pricing for all Veronis Mobile Detailing services — full details, interior, exterior, paint correction, and service plans for Worcester County, MA.">
+<link rel="icon" type="image/jpeg" href="brand_assets/VMDlogo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        surface: '#0A0A0A',
+        charcoal: '#111111',
+        graphite: '#1A1A1A',
+        silver: '#C0C0C0',
+        steel: '#8C8C8C',
+        gunmetal: '#5C5C5C',
+        dborder: '#2A2A2A',
+        teal: { DEFAULT: '#4A8B9E', light: '#6BB3C9', dark: '#2E6B7E' }
+      },
+      fontFamily: {
+        display: ['Montserrat', 'Arial', 'sans-serif'],
+        body: ['Inter', 'Helvetica', 'Arial', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; border-radius: 0 !important; }
+  html { scroll-behavior: smooth; }
+  body { background:transparent; color: #8C8C8C; font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
+
+  .grain::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1;
+  }
+
+  .text-chrome {
+    background: linear-gradient(180deg, #C0C0C0 0%, #4A8B9E 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  #nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 16px 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  #nav.scrolled {
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-color: #2A2A2A;
+  }
+  .nav-link {
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #8C8C8C; text-decoration: none;
+    transition: color 0.2s ease; padding: 4px 0; position: relative;
+  }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: #4A8B9E;
+    transform: scaleX(0); transition: transform 0.2s ease; transform-origin: left;
+  }
+  .nav-link:hover { color: #C0C0C0; }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link.active { color: #C0C0C0; }
+  .nav-link.active::after { transform: scaleX(1); }
+
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #4A8B9E 0%, #2E6B7E 100%);
+    color: #fff; padding: 14px 32px;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #6BB3C9 0%, #4A8B9E 100%);
+    transform: translateY(-2px); box-shadow: 0 8px 32px rgba(74,139,158,0.35);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  @keyframes btn-shimmer {
+    0% { transform: translateX(-200%); }
+    60%, 100% { transform: translateX(350%); }
+  }
+  .btn-quote {
+    display: inline-flex; align-items: center;
+    background: linear-gradient(135deg, #4A8B9E 0%, #2E6B7E 100%);
+    color: #fff; padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+    position: relative; overflow: hidden; flex-shrink: 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 16px rgba(74,139,158,0.3);
+  }
+  .btn-quote::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 45%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-200%);
+    animation: btn-shimmer 2.5s ease-in-out infinite;
+  }
+  .btn-quote:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,139,158,0.55); }
+  .btn-quote:active { transform: translateY(0); }
+  @media (max-width: 768px) { .btn-quote-wrap { display: none !important; } }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #4A8B9E;
+    margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif; font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700; color: #C0C0C0; letter-spacing: -0.01em;
+    line-height: 1.2; margin: 0 0 16px 0;
+  }
+  .section-sub { font-size: 17px; color: #8C8C8C; line-height: 1.7; max-width: 560px; }
+
+  .card {
+    background: #1A1A1A; border: 1px solid #2A2A2A; padding: 32px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card:hover {
+    border-color: #4A8B9E; box-shadow: 0 0 40px rgba(74,139,158,0.1);
+    transform: translateY(-3px);
+  }
+  .card-featured { border-color: #4A8B9E; border-top: 2px solid #4A8B9E; box-shadow: 0 0 40px rgba(74,139,158,0.12); }
+
+  .divider-teal {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #4A8B9E 50%, transparent 100%);
+  }
+
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; transition: none; } }
+
+  #mobile-menu {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; background:#000;
+    z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 32px; transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #mobile-menu.open { transform: translateX(0); }
+  .mobile-nav-link {
+    font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #C0C0C0; text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .mobile-nav-link:hover { color: #4A8B9E; }
+  .mobile-nav-link.active { color: #4A8B9E; }
+
+  .vehicle-tab {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 16px 20px; background: #111111; border: 1px solid #2A2A2A;
+    cursor: pointer; transition: border-color 0.25s, background 0.25s, color 0.25s;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5C5C5C; min-width: 130px;
+  }
+  .vehicle-tab:hover { border-color: #4A8B9E; color: #8C8C8C; }
+  .vehicle-tab.active { background: #0A0A0A; border-color: #4A8B9E; color: #C0C0C0; box-shadow: 0 0 20px rgba(74,139,158,0.15); }
+
+  .price-val { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1; }
+
+  .feature-li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #8C8C8C; line-height: 1.5; padding: 4px 0; }
+  .feature-li::before { content: '—'; color: #4A8B9E; font-weight: 700; flex-shrink: 0; }
+
+  .pricing-cat-tab {
+    padding: 10px 24px; background: #111111; border: 1px solid #2A2A2A;
+    cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 12px;
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #5C5C5C; transition: border-color 0.25s, color 0.25s, background 0.25s;
+  }
+  .pricing-cat-tab:hover { border-color: #4A8B9E; color: #8C8C8C; }
+  .pricing-cat-tab.active { background: #0A0A0A; border-color: #4A8B9E; color: #C0C0C0; box-shadow: 0 0 20px rgba(74,139,158,0.15); }
+
+  .accord-panel { display: none; }
+  .accord-panel.active { display: block; }
+
+  .accord-row {
+    border: 1px solid #2A2A2A; margin-bottom: 8px;
+    transition: border-color 0.25s ease;
+  }
+  .accord-row:hover { border-color: #4A8B9E; }
+  .accord-row.open { border-color: #4A8B9E; }
+
+  .accord-trigger {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; background: #111111; border: none; cursor: pointer;
+    gap: 16px; transition: background 0.2s ease;
+  }
+  .accord-trigger:hover { background: #141414; }
+  .accord-row.open .accord-trigger { background: #0A0A0A; }
+
+  .accord-arrow {
+    width: 20px; height: 20px; flex-shrink: 0; color: #4A8B9E;
+    transition: transform 0.3s ease;
+  }
+  .accord-row.open .accord-arrow { transform: rotate(90deg); }
+
+  .accord-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s ease;
+    background: #0D0D0D; padding: 0 24px;
+  }
+  .accord-body.open { max-height: 500px; padding: 24px; }
+
+  .accord-price-display {
+    font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800;
+    color: #fff; line-height: 1; margin-bottom: 20px;
+  }
+
+  .badge {
+    display: inline-block; background: linear-gradient(135deg, #4A8B9E, #2E6B7E);
+    color: #fff; padding: 4px 12px; font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+
+  .plan-badge {
+    display: inline-block; font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #4A8B9E; border: 1px solid #2A6070; padding: 4px 12px; margin-bottom: 16px;
+  }
+  .plan-badge.best { background: rgba(74,139,158,0.12); border-color: #4A8B9E; color: #6BB3C9; }
+
+  .plan-savings {
+    background: rgba(74,139,158,0.08); border-left: 2px solid #4A8B9E;
+    padding: 12px 16px; margin: 20px 0;
+    font-size: 13px; color: #8C8C8C; line-height: 1.5;
+  }
+  .plan-savings strong { color: #4A8B9E; }
+
+  .plans-tc-trigger {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; background: #111; border: 1px solid #2A2A2A; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5C5C5C;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .plans-tc-trigger:hover { border-color: #4A8B9E; color: #8C8C8C; }
+  .plans-tc-arrow { transition: transform 0.3s ease; color: #4A8B9E; }
+  .plans-tc-trigger.open .plans-tc-arrow { transform: rotate(90deg); }
+  .plans-tc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s ease;
+    background: #0D0D0D; border: 1px solid #2A2A2A; border-top: none; padding: 0 24px;
+  }
+  .plans-tc-body.open { max-height: 600px; padding: 24px; }
+
+  .faq-item { border-bottom: 1px solid #2A2A2A; }
+  .faq-btn {
+    width: 100%; text-align: left; padding: 20px 0; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 600;
+    color: #C0C0C0; letter-spacing: -0.01em; transition: color 0.2s;
+  }
+  .faq-btn:hover { color: #4A8B9E; }
+  .faq-icon { font-size: 20px; color: #4A8B9E; flex-shrink: 0; transition: transform 0.25s ease; line-height: 1; }
+  .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+  .faq-body.open { max-height: 300px; padding-bottom: 20px; }
+  .faq-item.active { border-left: 2px solid #4A8B9E; padding-left: 16px; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background:#000; }
+  ::-webkit-scrollbar-thumb { background: #2A2A2A; }
+  ::-webkit-scrollbar-thumb:hover { background: #4A8B9E; }
+
+  @media (max-width: 768px) {
+    .desktop-nav { display: none !important; }
+    .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    .pricing-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (min-width: 769px) {
+    #hamburger { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BEAMS BACKGROUND CANVAS -->
+<div style="position:fixed;inset:0;z-index:-2;background:#000;"></div>
+<canvas id="beams-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;filter:blur(15px);"></canvas>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" aria-hidden="true">
+  <button id="mobile-close" aria-label="Close menu" style="position:absolute;top:24px;right:24px;background:none;border:none;color:#8C8C8C;font-size:28px;cursor:pointer;">&times;</button>
+  <a href="index.html" class="mobile-nav-link" onclick="closeMobile()">Home</a>
+  <a href="about.html" class="mobile-nav-link" onclick="closeMobile()">About</a>
+  <a href="services.html" class="mobile-nav-link active" onclick="closeMobile()">Services</a>
+  <a href="contact.html" class="mobile-nav-link" onclick="closeMobile()">Contact</a>
+  <a href="contact.html" class="mobile-nav-link" style="color:#4A8B9E;border:1px solid #4A8B9E;padding:12px 40px;margin-top:8px;" onclick="closeMobile()">Get a Quote</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+      <img src="brand_assets/VMDlogo.jpg" alt="Veronis Mobile Detailing" style="height:72px;width:auto;">
+    </a>
+    <div class="desktop-nav" style="display:flex;align-items:center;gap:32px;">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="services.html" class="nav-link active">Services</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="contact.html" class="btn-quote btn-quote-wrap">Get a Quote</a>
+      <button id="hamburger" aria-label="Open menu" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;flex-direction:column;gap:5px;" onclick="openMobile()">
+        <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
+        <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
+        <span style="width:24px;height:2px;background:#C0C0C0;display:block;"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- INTERACTIVE PRICING -->
+<section style="background:rgba(10,10,10,0.82);padding:140px 0 96px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div style="text-align:center;margin-bottom:56px;" class="fade-up">
+      <span class="section-label">No Surprises</span>
+      <h2 class="section-title" style="margin:0 auto 16px;text-align:center;">What's Included</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">Select your vehicle type for accurate pricing.</p>
+    </div>
+
+    <div class="fade-up" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:56px;">
+      <button class="vehicle-tab active" onclick="selectVehicle('sedan',this)">
+        <svg width="54" height="26" viewBox="0 0 54 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 14 L3 20 L51 20 L51 14 L44 6 L16 6 L9 14 Z"/>
+          <circle cx="14" cy="22" r="3"/><circle cx="40" cy="22" r="3"/>
+        </svg>
+        Sedan / Coupe
+      </button>
+      <button class="vehicle-tab" onclick="selectVehicle('suv',this)">
+        <svg width="54" height="26" viewBox="0 0 54 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 14 L3 20 L51 20 L51 14 L46 5 L8 5 L3 14 Z"/>
+          <circle cx="14" cy="22" r="3"/><circle cx="40" cy="22" r="3"/>
+        </svg>
+        SUV / Crossover
+      </button>
+      <button class="vehicle-tab" onclick="selectVehicle('truck',this)">
+        <svg width="54" height="26" viewBox="0 0 54 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 14 L3 20 L51 20 L51 14 L36 14 L36 7 L10 7 L3 14 Z"/>
+          <circle cx="13" cy="22" r="3"/><circle cx="42" cy="22" r="3"/>
+        </svg>
+        Truck
+      </button>
+      <button class="vehicle-tab" onclick="selectVehicle('large',this)">
+        <svg width="54" height="26" viewBox="0 0 54 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 13 L2 20 L52 20 L52 13 L47 4 L7 4 L2 13 Z"/>
+          <circle cx="13" cy="22" r="3"/><circle cx="41" cy="22" r="3"/>
+        </svg>
+        Large SUV / Van
+      </button>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="fade-up" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:40px;">
+      <button class="pricing-cat-tab active" onclick="selectCategory('full',this)">Full Details</button>
+      <button class="pricing-cat-tab" onclick="selectCategory('ala',this)">Interior & Exterior</button>
+      <button class="pricing-cat-tab" onclick="selectCategory('paint',this)">Paint Correction</button>
+    </div>
+
+    <div style="max-width:760px;margin:0 auto;">
+
+      <!-- PANEL: Full Details -->
+      <div id="panel-full" class="accord-panel active fade-up">
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">Silver Detail</span>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$190" data-suv="$210" data-truck="$235" data-large="$225">$190</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$190" data-suv="$210" data-truck="$235" data-large="$225">$190</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Full vacuum of seats, carpets, floor mats & crevices</div>
+              <div class="feature-li">Complete interior surface cleaning & deodorization</div>
+              <div class="feature-li">Door jamb, rim & tire cleaning + dressing</div>
+              <div class="feature-li">Full foam pre-wash, hand wash & dry</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('Silver Detail')">Book Silver Detail →</button>
+          </div>
+        </div>
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">Gold Detail</span>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$245" data-suv="$265" data-truck="$275" data-large="$280">$245</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$245" data-suv="$265" data-truck="$275" data-large="$280">$245</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Everything included in Silver Detail</div>
+              <div class="feature-li">Deep shampoo of seats, floor mats & carpeting</div>
+              <div class="feature-li">Leather cleaning & conditioning</div>
+              <div class="feature-li">Paint sealant + wheel & tire protective coating</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('Gold Detail')">Book Gold Detail →</button>
+          </div>
+        </div>
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">Diamond Detail</span>
+                <span class="badge" style="font-size:9px;">Best Value</span>
+              </div>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$325" data-suv="$345" data-truck="$350" data-large="$360">$325</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$325" data-suv="$345" data-truck="$350" data-large="$360">$325</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Everything included in Gold Detail</div>
+              <div class="feature-li">Protective dressing on all plastic & vinyl surfaces</div>
+              <div class="feature-li">Clay bar decontamination treatment</div>
+              <div class="feature-li">Ceramic wax + exterior trim restoration & protection</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('Diamond Detail')">Book Diamond Detail →</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PANEL: Interior & Exterior -->
+      <div id="panel-ala" class="accord-panel fade-up">
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">Interior Detail</span>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$165" data-suv="$185" data-truck="$170" data-large="$200">$165</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$165" data-suv="$185" data-truck="$170" data-large="$200">$165</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Complete interior surface cleaning & deodorization</div>
+              <div class="feature-li">Full vacuum of seats, carpets, floor mats & crevices</div>
+              <div class="feature-li">Interior window & mirror cleaning</div>
+              <div class="feature-li">Deep shampoo of seats, mats & carpeting</div>
+              <div class="feature-li">Leather cleaning & conditioning</div>
+              <div class="feature-li">Protective dressing on plastic & vinyl surfaces</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('Interior Detail')">Book Interior Detail →</button>
+          </div>
+        </div>
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">Exterior Detail</span>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$150" data-suv="$170" data-truck="$165" data-large="$185">$150</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$150" data-suv="$170" data-truck="$165" data-large="$185">$150</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Full foam pre-wash, hand wash & dry</div>
+              <div class="feature-li">Tire, wheel & rim cleaning and dressing</div>
+              <div class="feature-li">Clay bar decontamination treatment</div>
+              <div class="feature-li">Wax sealant for paint protection & gloss</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('Exterior Detail')">Book Exterior Detail →</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PANEL: Paint Correction -->
+      <div id="panel-paint" class="accord-panel fade-up">
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">1-Step Paint Correction</span>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$490" data-suv="$510" data-truck="$550" data-large="$525">$490</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$490" data-suv="$510" data-truck="$550" data-large="$525">$490</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Full exterior wash & clay bar decontamination</div>
+              <div class="feature-li">Paint surface preparation</div>
+              <div class="feature-li">Single-stage machine polish</div>
+              <div class="feature-li">Removes light swirl marks, minor scratches & oxidation</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('1-Step Paint Correction')">Book 1-Step Correction →</button>
+          </div>
+        </div>
+
+        <div class="accord-row">
+          <button class="accord-trigger" onclick="toggleAccord(this)">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <svg class="accord-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">2-Step Paint Correction</span>
+            </div>
+            <span class="price-val" style="font-size:20px;"><span class="pv" data-sedan="$590" data-suv="$610" data-truck="$650" data-large="$625">$590</span></span>
+          </button>
+          <div class="accord-body">
+            <div class="accord-price-display pv" data-sedan="$590" data-suv="$610" data-truck="$650" data-large="$625">$590</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
+              <div class="feature-li">Full exterior wash & clay bar decontamination</div>
+              <div class="feature-li">Stage 1: Machine compounding to remove defects</div>
+              <div class="feature-li">Stage 2: Machine polish to refine & restore gloss</div>
+              <div class="feature-li">Eliminates deep scratches, heavy swirls & oxidation</div>
+            </div>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('2-Step Paint Correction')">Book 2-Step Correction →</button>
+          </div>
+        </div>
+
+        <div class="accord-row" style="border-color:#4A8B9E;">
+          <div class="accord-trigger" style="cursor:default;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="width:20px;flex-shrink:0;color:#4A8B9E;font-size:18px;">✦</span>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#C0C0C0;">Ceramic Coating</span>
+            </div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;color:#4A8B9E;letter-spacing:0.05em;">Custom Quote</span>
+          </div>
+          <div style="padding:0 24px 20px;background:#0D0D0D;">
+            <p style="font-size:14px;color:#5C5C5C;line-height:1.6;margin:0 0 16px;">Long-term paint protection. Best applied after paint correction for optimal adhesion and gloss.</p>
+            <button class="btn-primary" style="font-size:13px;padding:12px 28px;" onclick="bookService('Ceramic Coating (Quote)')">Get A Quote →</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <p style="text-align:center;font-size:13px;color:#5C5C5C;font-style:italic;margin-top:32px;">* Prices are estimates. Final pricing varies based on vehicle condition. Contact us for an exact quote.</p>
+
+    <!-- ADD-ON CARDS -->
+    <div style="margin-top:64px;border-top:1px solid #2A2A2A;padding-top:48px;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <span class="section-label">Enhance Your Service</span>
+        <h2 class="section-title" style="text-align:center;margin:0 auto 8px;">Add-On Services</h2>
+        <p style="font-size:15px;color:#5C5C5C;margin:0 auto;">Pair any of these with your detail for a complete transformation.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;">
+        <div style="background:rgba(26,26,26,0.88);border-top:3px solid #4A8B9E;padding:36px 32px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="color:#4A8B9E;font-size:20px;">✦</span>
+            <h3 style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#C0C0C0;margin:0;">Engine Bay Cleaning</h3>
+          </div>
+          <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">A thorough degreasing and detail of the engine bay — removing built-up grime, grease, and road residue for a clean, showroom-ready underhood appearance.</p>
+        </div>
+        <div style="background:rgba(26,26,26,0.88);border-top:3px solid #4A8B9E;padding:36px 32px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="color:#4A8B9E;font-size:20px;">✦</span>
+            <h3 style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#C0C0C0;margin:0;">Headlight Restoration</h3>
+          </div>
+          <p style="font-size:14px;color:#5C5C5C;line-height:1.7;margin:0;">Polishing and restoring cloudy or yellowed headlights back to near-new clarity — improving both the look of your vehicle and your visibility on the road.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DECORATIVE VIDEO STRIP -->
+<div style="position:relative;height:280px;overflow:hidden;">
+  <video src="brand_assets/hand-of-african-american-businessman-washing-yellow-sports-car-with-high-pressure-w-SBV-348480019-4K.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center 60%;"></video>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.5) 50%,rgba(0,0,0,0.7) 100%);"></div>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+    <p style="font-family:'Montserrat',sans-serif;font-size:clamp(18px,3vw,28px);font-weight:700;color:#C0C0C0;letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin:0;padding:0 32px;">
+      Professional-Grade Products. <span style="color:#4A8B9E;">Every Time.</span>
+    </p>
+  </div>
+</div>
+
+<div class="divider-teal"></div>
+
+<!-- SERVICE PLANS -->
+<section style="background:rgba(0,0,0,0.82);padding:96px 0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+
+    <div style="text-align:center;margin-bottom:64px;" class="fade-up">
+      <span class="section-label">Seasonal Care</span>
+      <h2 class="section-title" style="margin:0 auto 16px;text-align:center;">Service Plans</h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center;">Commit to a season of care and save on every visit.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:48px;" class="fade-up">
+
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div>
+          <div class="plan-badge">Single Visit</div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#C0C0C0;margin:0 0 6px;letter-spacing:-0.01em;">One-Time Detail</h3>
+          <p style="font-size:13px;color:#5C5C5C;margin:0 0 24px;line-height:1.5;">Full standard pricing — no commitment required. Perfect for a first visit or a one-off deep clean.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+            <div class="feature-li">No contract or commitment</div>
+            <div class="feature-li">Pay at time of service</div>
+            <div class="feature-li">All packages available</div>
+            <div class="feature-li">Schedule at a time and location that works for you</div>
+          </div>
+        </div>
+        <div style="margin-top:auto;">
+          <button class="btn-primary" style="width:100%;font-size:13px;padding:14px 28px;text-align:center;" onclick="window.location.href='contact.html'">Get Started →</button>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex;flex-direction:column;">
+        <div>
+          <div class="plan-badge">2× Per Season</div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#C0C0C0;margin:0 0 4px;letter-spacing:-0.01em;">Refresh Plan</h3>
+          <p style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:800;color:#4A8B9E;margin:0 0 6px;line-height:1;">10% off every visit</p>
+          <p style="font-size:13px;color:#5C5C5C;margin:0 0 24px;line-height:1.5;">Two details per season for consistent upkeep — a mid-season refresh and an end-of-season clean.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+            <div class="feature-li">Mid-season + end-of-season coverage</div>
+            <div class="feature-li">Mix & match packages between visits</div>
+            <div class="feature-li">Pay per visit at discounted rate</div>
+            <div class="feature-li">No lump sum required upfront</div>
+          </div>
+          <div class="plan-savings">Save <strong>$15–$35</strong> per visit on most packages</div>
+        </div>
+        <div style="margin-top:auto;">
+          <button class="btn-primary" style="width:100%;font-size:13px;padding:14px 28px;text-align:center;" onclick="window.location.href='contact.html'">Get Started →</button>
+        </div>
+      </div>
+
+      <div class="card card-featured" style="display:flex;flex-direction:column;position:relative;">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <div class="plan-badge best" style="margin-bottom:0;">3× Per Season</div>
+            <div class="plan-badge best" style="margin-bottom:0;">Best Value</div>
+          </div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#C0C0C0;margin:0 0 4px;letter-spacing:-0.01em;">Premier Plan</h3>
+          <p style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:800;color:#4A8B9E;margin:0 0 6px;line-height:1;">15% off every visit</p>
+          <p style="font-size:13px;color:#5C5C5C;margin:0 0 24px;line-height:1.5;">Full-season coverage at our best rate. Designed for drivers who treat their vehicle as an investment.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+            <div class="feature-li">Start, mid & end-of-season details</div>
+            <div class="feature-li">Mix & match packages across all three visits</div>
+            <div class="feature-li">Priority scheduling during peak times</div>
+            <div class="feature-li">Pay per visit — no lump sum required</div>
+          </div>
+          <div class="plan-savings">3× Diamond Detail saves <strong>$130+</strong> over the season</div>
+        </div>
+        <div style="margin-top:auto;">
+          <button class="btn-primary" style="width:100%;font-size:13px;padding:14px 28px;text-align:center;background:linear-gradient(135deg,#4A8B9E,#2E6B7E);" onclick="window.location.href='contact.html'">Get Started →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="fade-up" style="max-width:760px;margin:0 auto;">
+      <button class="plans-tc-trigger" id="plans-tc-btn" onclick="togglePlansTC()">
+        <span>Terms &amp; Conditions</span>
+        <svg class="plans-tc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="plans-tc-body" id="plans-tc-body">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="feature-li">Unused appointments <strong style="color:#C0C0C0;">do not roll over</strong> to the following season</div>
+          <div class="feature-li">Plans must be completed within the <strong style="color:#C0C0C0;">detailing season</strong>, which ranges from <strong style="color:#C0C0C0;">April to October</strong></div>
+          <div class="feature-li">Packages can be <strong style="color:#C0C0C0;">mixed and matched</strong> between visits within the same plan</div>
+          <div class="feature-li">Plans are <strong style="color:#C0C0C0;">per vehicle</strong> — multiple vehicles require separate enrollments</div>
+          <div class="feature-li">Pricing reflects vehicle size — compact cars at the lower end, full-size trucks &amp; SUVs at the higher end</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DECORATIVE VIDEO STRIP 2 -->
+<div style="position:relative;height:220px;overflow:hidden;">
+  <video src="brand_assets/close-up-cropped-image-of-washing-car-interior-and-seat-by-a-soft-brush-with-foam-y-SBV-348448939-4K.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center;"></video>
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.65);"></div>
+</div>
+
+<div class="divider-teal"></div>
+
+<!-- FAQ -->
+<section style="background:rgba(0,0,0,0.82);padding:96px 0;">
+  <div style="max-width:760px;margin:0 auto;padding:0 32px;">
+    <div style="text-align:center;margin-bottom:64px;" class="fade-up">
+      <span class="section-label">Got Questions</span>
+      <h2 class="section-title" style="margin:0 auto 16px;text-align:center;">Frequently Asked Questions</h2>
+    </div>
+    <div class="fade-up">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">How long does a detail take?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">Depending on the package, a detail typically takes 2–5 hours. A basic interior or exterior service runs around 2 hours, while a full Diamond Detail or paint correction can take 4–6 hours.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">What if it rains on my appointment day?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">We'll reach out ahead of time to reschedule if weather is an issue. Interior services can often still be performed in light rain. We'll always do what's best for your vehicle.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">What areas do you serve?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">We serve Worcester, Shrewsbury, Westborough, Grafton, Holden, Auburn, Millbury, Northborough, Boylston, and surrounding towns in Worcester County, MA. Not sure? Just ask.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">How do I prepare my vehicle?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">Just remove any personal items from the interior. No need to pre-clean anything — that's our job.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Do you offer ceramic coating?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">Yes. We apply professional-grade ceramic coatings for long-term paint protection. Ceramic coating is best applied after a paint correction for optimal results. Contact us for a custom quote.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Do I need to provide water or electricity?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">Yes — we do require access to a water spigot and a standard electrical outlet near where the vehicle is located. We bring all of our own professional equipment and supplies; we just need those two utilities available on-site.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">What products do you use?<span class="faq-icon">+</span></button>
+        <div class="faq-body"><p style="font-size:15px;color:#8C8C8C;line-height:1.7;margin:0;">We use only professional-grade detailing products — the same used by high-end detailing shops. No shortcuts. Your paint and interior are treated with products that protect and enhance them long-term.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#000;border-top:1px solid #1A1A1A;padding:64px 0 32px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 32px;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;">
+      <div>
+        <img src="brand_assets/VMDlogo.jpg" alt="Veronis Mobile Detailing" style="height:44px;width:auto;margin-bottom:20px;display:block;">
+        <p style="font-size:14px;color:#5C5C5C;line-height:1.6;margin:0 0 24px;max-width:260px;">Premium mobile car detailing brought to your door. Serving Worcester County, MA.</p>
+        <a href="https://www.facebook.com/profile.php?id=61557473774396" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(17,17,17,0.82);border:1px solid #2A2A2A;display:inline-flex;align-items:center;justify-content:center;color:#8C8C8C;text-decoration:none;font-size:14px;font-weight:700;transition:border-color 0.25s,color 0.25s;" onmouseover="this.style.borderColor='#4A8B9E';this.style.color='#4A8B9E'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#8C8C8C'">f</a>
+      </div>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Services</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="services.html" style="font-size:14px;color:#4A8B9E;text-decoration:none;">Complete Details</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Interior Only</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Exterior Only</a>
+          <a href="services.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Paint Correction</a>
+          <a href="contact.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Ceramic Coating</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Company</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">About</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Gallery</a>
+          <a href="about.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Reviews</a>
+          <a href="services.html" style="font-size:14px;color:#4A8B9E;text-decoration:none;">FAQ</a>
+          <a href="contact.html" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">Contact</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C0C0C0;margin:0 0 20px;">Contact</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="tel:7742007226" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">774-200-7226</a>
+          <a href="mailto:veronismobiledetailing@gmail.com" style="font-size:14px;color:#5C5C5C;text-decoration:none;" onmouseover="this.style.color='#8C8C8C'" onmouseout="this.style.color='#5C5C5C'">veronismobiledetailing@gmail.com</a>
+          <span style="font-size:14px;color:#5C5C5C;">Worcester County, MA</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #111111;padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <p style="font-size:13px;color:#5C5C5C;margin:0;">© 2026 Veronis Mobile Detailing. All rights reserved.</p>
+      <p style="font-size:13px;color:#5C5C5C;margin:0;">Serving Worcester County, MA</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// MOBILE MENU
+function openMobile() {
+  document.getElementById('mobile-menu').classList.add('open');
+  document.getElementById('mobile-menu').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobile() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('mobile-menu').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+document.getElementById('mobile-close').addEventListener('click', closeMobile);
+
+// FADE UP
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 40);
+    });
+  }, 200);
+});
+
+// PRICING CATEGORY TABS
+function selectCategory(id, btn) {
+  document.querySelectorAll('.pricing-cat-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.accord-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+// ACCORDION
+function togglePlansTC() {
+  const btn = document.getElementById('plans-tc-btn');
+  const body = document.getElementById('plans-tc-body');
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+function toggleAccord(trigger) {
+  const row = trigger.parentElement;
+  const body = row.querySelector('.accord-body');
+  const isOpen = row.classList.contains('open');
+  trigger.closest('.accord-panel').querySelectorAll('.accord-row').forEach(r => {
+    r.classList.remove('open');
+    r.querySelector('.accord-body').classList.remove('open');
+  });
+  if (!isOpen) {
+    row.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+// BOOK SERVICE
+function bookService(name) {
+  window.location.href = 'contact.html?service=' + encodeURIComponent(name);
+}
+
+// VEHICLE PRICING
+function selectVehicle(type, btn) {
+  document.querySelectorAll('.vehicle-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pv').forEach(el => {
+    el.textContent = el.dataset[type] || el.dataset.sedan;
+  });
+}
+
+// FAQ
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const body = item.querySelector('.faq-body');
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+  if (!isOpen) { body.classList.add('open'); icon.textContent = '×'; item.classList.add('active'); }
+}
+</script>
+
+<script>
+(function(){
+  var c = document.getElementById('beams-bg');
+  var ctx = c.getContext('2d');
+  var beams = [], N = 30;
+
+  function mkBeam(W, H) {
+    return {
+      x: Math.random()*W*1.5 - W*0.25,
+      y: Math.random()*H*1.5 - H*0.25,
+      w: 30 + Math.random()*60,
+      len: H*2.5,
+      angle: -35 + Math.random()*10,
+      speed: 0.6 + Math.random()*1.2,
+      op: 0.12 + Math.random()*0.16,
+      hue: 190 + Math.random()*70,
+      pulse: Math.random()*Math.PI*2,
+      ps: 0.02 + Math.random()*0.03
+    };
+  }
+
+  function reset(b, i) {
+    var sp = c.width/3;
+    b.y = c.height + 100;
+    b.x = (i%3)*sp + sp/2 + (Math.random()-.5)*sp*.5;
+    b.w = 100 + Math.random()*100;
+    b.speed = 0.5 + Math.random()*.4;
+    b.hue = 190 + i*70/N;
+    b.op = 0.2 + Math.random()*.1;
+  }
+
+  function resize() {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    beams = Array.from({length:N}, function(){ return mkBeam(c.width, c.height); });
+  }
+
+  function frame() {
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.filter = 'blur(35px)';
+    beams.forEach(function(b,i){
+      b.y -= b.speed;
+      b.pulse += b.ps;
+      if(b.y + b.len < -100) reset(b,i);
+      var op = b.op*(0.8+Math.sin(b.pulse)*0.2)*0.85;
+      var g = ctx.createLinearGradient(0,0,0,b.len);
+      g.addColorStop(0,   'hsla('+b.hue+',85%,65%,0)');
+      g.addColorStop(0.1, 'hsla('+b.hue+',85%,65%,'+(op*.5)+')');
+      g.addColorStop(0.4, 'hsla('+b.hue+',85%,65%,'+op+')');
+      g.addColorStop(0.6, 'hsla('+b.hue+',85%,65%,'+op+')');
+      g.addColorStop(0.9, 'hsla('+b.hue+',85%,65%,'+(op*.5)+')');
+      g.addColorStop(1,   'hsla('+b.hue+',85%,65%,0)');
+      ctx.save();
+      ctx.translate(b.x,b.y);
+      ctx.rotate(b.angle*Math.PI/180);
+      ctx.fillStyle = g;
+      ctx.fillRect(-b.w/2,0,b.w,b.len);
+      ctx.restore();
+    });
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  frame();
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
